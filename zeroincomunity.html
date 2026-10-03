@@ -16,7 +16,7 @@
             try {
                 const url = new URL(window.location.href);
                 const pass = url.searchParams.get("pass");
-                const VALID_PASS = ["zero", "zeroin", "zeroinfree", "ronnei2026", "omg2026"];
+                const VALID_PASS = ["zero", "zeroin", "zeroinfree", "craftvip", "ronnei2026", "omg2026"];
 
                 if (pass && VALID_PASS.includes(pass)) {
                     sessionStorage.setItem("ZeroIn_Auth_Session", "ACTIVE_" + Date.now());
@@ -52,7 +52,6 @@
             position: relative;
         }
 
-        /* Lưới Cyberpunk Vector nền */
         body::before {
             content: '';
             position: fixed;
@@ -78,7 +77,6 @@
         .glow-cyan { top: -80px; left: 50%; transform: translateX(-50%); background: #06b6d4; }
         .glow-blue { bottom: -80px; right: -50px; background: #3b82f6; }
 
-        /* Màn hình từ chối truy cập */
         .denied-container {
             width: 100%;
             max-width: 400px;
@@ -116,7 +114,6 @@
             line-height: 1.6;
         }
 
-        /* Khung thẻ chính Zero In Cyber Card */
         .hub-card {
             width: 100%;
             max-width: 405px;
@@ -140,7 +137,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Viền sáng chạy dọc Neon Cyan */
         .hub-card::before {
             content: '';
             position: absolute;
@@ -159,7 +155,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Logo Tâm Ngắm Cyber */
         .logo-wrapper {
             display: flex;
             justify-content: center;
@@ -183,7 +178,6 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* Tiêu đề & Phụ đề */
         .hub-header {
             text-align: center;
             margin-bottom: 18px;
@@ -207,7 +201,6 @@
             text-transform: uppercase;
         }
 
-        /* Module 1: Trạng thái hệ thống */
         .status-row {
             background: rgba(10, 24, 38, 0.65);
             border: 1px solid rgba(6, 182, 212, 0.25);
@@ -247,7 +240,6 @@
             box-shadow: 0 0 10px #22d3ee;
         }
 
-        /* Module 2: Chu kỳ & Đổi Key sau */
         .grid-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -280,7 +272,6 @@
             font-size: 12px;
         }
 
-        /* Module 3: Khung hiển thị Key */
         .key-section {
             background: rgba(5, 16, 26, 0.85);
             border: 1px solid rgba(6, 182, 212, 0.35);
@@ -344,7 +335,6 @@
             text-shadow: 0 0 14px rgba(34, 211, 238, 0.85);
         }
 
-        /* Nút Electric Cyan Gradient */
         .btn-action {
             width: 100%;
             height: 46px;
@@ -370,7 +360,6 @@
             box-shadow: 0 5px 20px rgba(16, 185, 129, 0.45);
         }
 
-        /* Module 4: Script Loader */
         .script-section {
             background: rgba(5, 16, 26, 0.85);
             border: 1px solid rgba(6, 182, 212, 0.25);
@@ -415,7 +404,6 @@
             user-select: all;
         }
 
-        /* SFX Row */
         .sfx-row {
             display: flex;
             align-items: center;
@@ -448,7 +436,6 @@
             font-weight: 600;
         }
 
-        /* Toast Popup */
         .toast {
             position: fixed;
             bottom: -90px;
@@ -475,7 +462,7 @@
     <div class="ambient-glow glow-cyan"></div>
     <div class="ambient-glow glow-blue"></div>
 
-    <!-- MÀN HÌNH TỪ CHỐI TRUY CẬP (KHI KHÔNG CÓ PASS HỢP LỆ) -->
+    <!-- MÀN HÌNH TỪ CHỐI TRUY CẬP -->
     <div class="denied-container" id="accessDeniedScreen" style="display: none;">
         <h1 class="denied-title">ACCESS RESTRICTED</h1>
         <p class="denied-desc">Liên kết đã hết hạn hoặc bạn đang mở từ Lịch sử / Bookmark trình duyệt.</p>
@@ -490,7 +477,7 @@
 
         <div class="hub-header">
             <div class="hub-title">ZERO IN</div>
-            <div class="hub-subtitle">freemium : zero engine loader</div>
+            <div class="hub-subtitle">craftvip : zeroincomunity loader</div>
         </div>
 
         <div class="status-row">
@@ -534,7 +521,7 @@
                 <button class="btn-copy-script" onclick="copyScriptLoader()">Sao chép Loader</button>
             </div>
             <div class="script-code-box">
-                loadstring(game:HttpGet('https://raw.githubusercontent.com/robvxs24/freemium/refs/heads/main/zero.lua'))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/craftvip/free/refs/heads/main/zeroincomunity.lua"))()
             </div>
         </div>
 
@@ -554,7 +541,7 @@
     <div class="toast" id="toast">Đã sao chép mã Key Zero In vào bộ nhớ tạm!</div>
         <script>
         // =========================================================================
-        //  1. KIỂM TRA PHIÊN HỢP LỆ (CHỐNG BYPASS VÀ CHỐNG CHROME TỰ GỢI Ý)
+        //  1. KIỂM TRA PHIÊN HỢP LỆ (CHỐNG BYPASS VÀ CHỐNG GỢI Ý CHROME)
         // =========================================================================
         const isAuthed = sessionStorage.getItem("ZeroIn_Auth_Session");
 
@@ -567,7 +554,7 @@
         }
 
         // =========================================================================
-        //  2. HIỆU ỨNG ÂM THANH SFX CYBER CHIME (WEB AUDIO API)
+        //  2. HIỆU ỨNG ÂM THANH SFX CYBER CHIME
         // =========================================================================
         let isAudioEnabled = true;
         let isKeyUnlocked = false;
@@ -588,7 +575,6 @@
                 const now = audioCtx.currentTime;
 
                 if (type === 'generate') {
-                    // Âm thanh kích hoạt ma trận Cyber
                     [587.33, 739.99, 880.00, 1174.66].forEach((freq, idx) => {
                         const osc = audioCtx.createOscillator();
                         const gain = audioCtx.createGain();
@@ -602,7 +588,6 @@
                         osc.stop(now + (idx * 0.05) + 0.3);
                     });
                 } else if (type === 'copy') {
-                    // Click phản hồi sắc nét
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
                     osc.type = 'triangle';
@@ -644,7 +629,6 @@
             const month = vn.getMonth() + 1;
             const year = vn.getFullYear();
 
-            // Thuật toán mã hóa băm riêng cho Zero In (cố định 24h theo ngày GMT+7)
             const v1 = (day * 4127 + month * 3389 + year * 163) % 65535;
             const v2 = (day * 6781 + month * 5107 + year * 281) % 65535;
             const v3 = (day * 8329 + month * 7219 + year * 401) % 65535;
@@ -656,7 +640,6 @@
             return `zeroinfree-${h1}-${h2}-${h3}`;
         }
 
-        // Đếm lùi chuẩn xác đến 24:00 (00:00 đêm)
         function updateCountdown() {
             const vn = getVietnamTime();
             const h = vn.getHours();
@@ -739,9 +722,10 @@
             }
         }
 
+        // Cập nhật URL Script Loader mới tại sự kiện sao chép
         function copyScriptLoader() {
             playSound('copy');
-            const loaderCode = "loadstring(game:HttpGet("https://raw.githubusercontent.com/craftvip/free/refs/heads/main/zeroincomunity.lua"))()";
+            const loaderCode = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/craftvip/free/refs/heads/main/zeroincomunity.lua"))()';
             navigator.clipboard.writeText(loaderCode).catch(() => {
                 const el = document.createElement("textarea");
                 el.value = loaderCode;
