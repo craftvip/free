@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Getkey Script - syscall Hub</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Plyr Video Player CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+    <style>
+        :root {
+            --bg-main: #0b0c10;
+            --card-bg: #13151b;
+            --card-border: #222634;
+            --accent-green: #00e676;
+            --accent-glow: rgba(0, 230, 118, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --plyr-color-main: #00e676;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 12px;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 230, 118, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.6) 0%, transparent 50%);
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 230, 118, 0.1);
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            color: var(--accent-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .stats-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #181c27;
+            border: 1px solid #2a3042;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 22px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+        }
+
+        .video-container {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
+            background: #000000;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* Plyr Customizations */
+        .plyr--full-ui {
+            border-radius: 14px;
+        }
+        .plyr__control--overlaid {
+            background: var(--accent-green) !important;
+            color: #000000 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="card">
+            
+            <div class="header-tag">
+                <i class="fa-solid fa-code"></i> syscall Hub
+            </div>
+
+            <h1 class="title">Hướng Dẫn Getkey Script</h1>
+            <p class="subtitle">Guide to getting the script key quickly & easily</p>
+
+            <div class="stats-badge">
+                <span class="pulse-dot"></span>
+                <span>Số lượt truy cập: <span id="visit-count" style="color: var(--accent-green);">10,005</span></span>
+            </div>
+
+            <!-- Video Player (Tích hợp trực tiếp ID video YouTube) -->
+            <div class="video-container">
+                <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="_8UGKIQwH0o"></div>
+            </div>
+
+            <div class="footer-note">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Xem kỹ hướng dẫn từng bước trong video để lấy key vĩnh viễn</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Plyr JavaScript -->
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script>
+        // Khởi tạo trình phát video
+        const player = new Plyr('#player', {
+            controls: [
+                'play-large', 
+                'play', 
+                'progress', 
+                'current-time', 
+                'duration', 
+                'mute', 
+                'volume', 
+                'settings', 
+                'fullscreen'
+            ],
+            youtube: {
+                noCookie: true,
+                rel: 0,
+                showinfo: 0,
+                iv_load_policy: 3,
+                modestbranding: 1
+            }
+        });
+
+        // Tự động tăng lượt truy cập lưu vào bộ nhớ trình duyệt
+        let visits = localStorage.getItem('syscall_visits') || 10005;
+        visits = parseInt(visits) + 1;
+        localStorage.setItem('syscall_visits', visits);
+        document.getElementById('visit-count').innerText = visits.toLocaleString('vi-VN');
+    </script>
+</body>
+</html>
