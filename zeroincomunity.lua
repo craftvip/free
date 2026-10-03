@@ -1,6 +1,6 @@
 -- =========================================================================
 --   🎯 KEY STEAM ZEROIN HUB - STEAL AN EGG 🥚 (PHẦN 1/4)
---   KIẾN TRÚC CYBER ELECTRIC · BẢN QUYỀN 24H · DÙNG THỬ 2 PHÚT
+--   TÍCH HỢP NÚT HƯỚNG DẪN GETKEY · CHU KỲ 24H · DÙNG THỬ 2 PHÚT
 -- =========================================================================
 
 local TweenService = game:GetService("TweenService")
@@ -12,11 +12,12 @@ local Lighting = game:GetService("Lighting")
 
 local LocalPlayer = Players.LocalPlayer
 local KeyUrl = "https://link4m.net/HK1eqb9Q"
+local TutorialUrl = "https://craftvip.github.io/free/getkey.html"
 local TargetScriptUrl = "https://raw.githubusercontent.com/robvxs24/freemium/refs/heads/main/zero.lua"
 
 local KeyFileName = "ZeroIn_KeyData.json"
 local TrialFileName = "ZeroIn_TrialData.json"
-local TRIAL_DURATION = 120 -- Thời hạn dùng thử chính xác 2 phút (120 giây)
+local TRIAL_DURATION = 120 -- Thời hạn dùng thử đúng 2 phút (120 giây)
 
 local InitialGuis = {}
 local ScriptConnections = {}
@@ -24,7 +25,7 @@ local ActiveBlurEffect = nil
 local InputBlockerScreen = nil
 local OpenKeySystemUI = nil
 
--- MODULE MÃ HÓA HEX-XOR BẢO VỆ DỮ LIỆU CỤC BỘ
+-- MODULE MÃ HÓA BẢO MẬT HEX-XOR
 local CIPHER_KEY = 113
 
 local function EncryptData(str: string): string
@@ -95,7 +96,7 @@ local function Save24hKey()
     end
 end
 
--- THUẬT TOÁN ĐỐI SOÁT 24H ĐỒNG BỘ TUYỆT ĐỐI VỚI WEB ZEROINCOMUNITY.HTML
+-- THUẬT TOÁN ĐỐI SOÁT KEY 24H (GMT+7)
 local function VerifyZeroInKey(rawInput: string): boolean
     if not rawInput or rawInput == "" then return false end
     local clean = string.lower(string.gsub(rawInput, "[%s%c]", ""))
@@ -119,7 +120,7 @@ local function VerifyZeroInKey(rawInput: string): boolean
 end
 -- =========================================================================
 --   🎯 KEY STEAM ZEROIN HUB - STEAL AN EGG 🥚 (PHẦN 2/4)
---   SNAPSHOT HIERARCHY · KHÓA MÀN HÌNH BẢO MẬT · CYBER LIVE TOAST
+--   SNAPSHOT UI · KHÓA MÀN HÌNH CHẶT CHẼ · LIVE COUNTDOWN TOAST
 -- =========================================================================
 
 local function TakeGuiSnapshot()
@@ -334,7 +335,7 @@ local function ShowLiveToast(titleText: string, initialSeconds: number, color: C
 end
 -- =========================================================================
 --   🎯 KEY STEAM ZEROIN HUB - STEAL AN EGG 🥚 (PHẦN 3/4)
---   GIAO DIỆN CYBER HUD GLASS · ELECTRIC CYAN & HOLOGRAPHIC SLATE
+--   BỔ SUNG NÚT HƯỚNG DẪN GETKEY · LAYOUT CYBER TITAN 415PX
 -- =========================================================================
 
 local Languages = {
@@ -348,8 +349,10 @@ local Languages = {
         Placeholder = "Nhập mã key tại đây (zeroinfree-...)...",
         GetKey = "⚡ LẤY KEY (24 TIẾNG)",
         CheckKey = "🎯 KÍCH HOẠT KEY",
+        Tutorial = "📖 HƯỚNG DẪN VƯỢT LINK GETKEY",
         Notice = "📌 Lưu ý: Link getkey 24 tiếng thao tác nhanh gọn (chỉ 1 phút vượt link). Mỗi key có hạn sử dụng đúng 24 giờ kể từ khi kích hoạt.",
-        CopiedLink = "📋 ĐÃ SAO CHÉP LINK GETKEY 24 TIẾNG VÀO BỘ NHỚ TẠM!",
+        CopiedLink = "📋 ĐÃ SAO CHÉP LINK GETKEY 24 TIẾNG VÀO CLIPBOARD!",
+        CopiedTutorial = "📖 ĐÃ SAO CHÉP LINK HƯỚNG DẪN VÀO CLIPBOARD!",
         Checking = "ĐANG XÁC THỰC...",
         CheckingMsg = "⏳ Đang đối soát chứng chỉ mã hóa trên máy chủ Zero In...",
         Success = "✔ Xác thực thành công! Đang khởi động Zero In Script...",
@@ -365,8 +368,10 @@ local Languages = {
         Placeholder = "Enter license key (zeroinfree-...)...",
         GetKey = "⚡ GET KEY (24 HOURS)",
         CheckKey = "🎯 ACTIVATE KEY",
+        Tutorial = "📖 GETKEY TUTORIAL / GUIDE",
         Notice = "📌 Notice: 24-hour key link is fast and easy (takes only 1 min). Each key remains valid for exactly 24 hours.",
         CopiedLink = "📋 24-HOUR KEY LINK COPIED TO CLIPBOARD!",
+        CopiedTutorial = "📖 TUTORIAL LINK COPIED TO CLIPBOARD!",
         Checking = "AUTHENTICATING...",
         CheckingMsg = "⏳ Verifying cyber credentials with Zero In server...",
         Success = "✔ License verified! Launching Zero In Script...",
@@ -397,11 +402,11 @@ OpenKeySystemUI = function()
     pcall(function() ScreenGui.Parent = CoreGui end)
     if not ScreenGui.Parent then ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui") end
 
-    -- Khung Chính Phong Cách Cyberpunk Obsidian Glass (440 x 375)
+    -- Khung Chính Mở Rộng Thêm Không Gian Cho Nút Hướng Dẫn (440 x 415)
     local MainFrame = Instance.new("Frame")
     MainFrame.Name = "MainFrame"
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-    MainFrame.Size = UDim2.new(0, 440, 0, 375)
+    MainFrame.Size = UDim2.new(0, 440, 0, 415)
     MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
     MainFrame.BackgroundColor3 = Color3.fromRGB(4, 12, 18)
     MainFrame.BorderSizePixel = 0
@@ -413,7 +418,6 @@ OpenKeySystemUI = function()
     local MainScale = Instance.new("UIScale", MainFrame)
     MainScale.Scale = 0.5
 
-    -- Viền sáng chạy dọc nhịp thở Neon Cyan
     local MainStroke = Instance.new("UIStroke", MainFrame)
     MainStroke.Thickness = 1.6
     MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -493,14 +497,14 @@ OpenKeySystemUI = function()
     LangStroke.Color = Color3.fromRGB(6, 182, 212)
     LangStroke.Thickness = 1
 
-    -- LOGO TRUNG TÂM TÂM NGẮM & QUẢ TRỨNG
+    -- LOGO TRUNG TÂM
     local CenterLogoBox = Instance.new("Frame")
-    CenterLogoBox.Size = UDim2.new(0, 58, 0, 58)
-    CenterLogoBox.Position = UDim2.new(0.5, -29, 0, 52)
+    CenterLogoBox.Size = UDim2.new(0, 54, 0, 54)
+    CenterLogoBox.Position = UDim2.new(0.5, -27, 0, 48)
     CenterLogoBox.BackgroundColor3 = Color3.fromRGB(6, 20, 30)
     CenterLogoBox.ZIndex = 31
     CenterLogoBox.Parent = MainFrame
-    Instance.new("UICorner", CenterLogoBox).CornerRadius = UDim.new(0, 18)
+    Instance.new("UICorner", CenterLogoBox).CornerRadius = UDim.new(0, 16)
     local CenterLogoStroke = Instance.new("UIStroke", CenterLogoBox)
     CenterLogoStroke.Color = Color3.fromRGB(6, 182, 212)
     CenterLogoStroke.Thickness = 1.4
@@ -509,14 +513,13 @@ OpenKeySystemUI = function()
     CenterLogoTxt.Size = UDim2.new(1, 0, 1, 0)
     CenterLogoTxt.BackgroundTransparency = 1
     CenterLogoTxt.Text = "🥚"
-    CenterLogoTxt.TextSize = 28
+    CenterLogoTxt.TextSize = 26
     CenterLogoTxt.ZIndex = 32
     CenterLogoTxt.Parent = CenterLogoBox
 
-    -- DÒNG CHỮ TIÊU ĐỀ
     local CenterTitle = Instance.new("TextLabel")
     CenterTitle.Size = UDim2.new(1, -30, 0, 20)
-    CenterTitle.Position = UDim2.new(0, 15, 0, 116)
+    CenterTitle.Position = UDim2.new(0, 15, 0, 108)
     CenterTitle.BackgroundTransparency = 1
     CenterTitle.Text = Languages[CurrentLang].CenterTitle
     CenterTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -527,7 +530,7 @@ OpenKeySystemUI = function()
 
     local CenterSub = Instance.new("TextLabel")
     CenterSub.Size = UDim2.new(1, -30, 0, 16)
-    CenterSub.Position = UDim2.new(0, 15, 0, 136)
+    CenterSub.Position = UDim2.new(0, 15, 0, 128)
     CenterSub.BackgroundTransparency = 1
     CenterSub.Text = Languages[CurrentLang].CenterSub
     CenterSub.TextColor3 = Color3.fromRGB(34, 211, 238)
@@ -539,7 +542,7 @@ OpenKeySystemUI = function()
     -- Ô NHẬP KEY
     local InputBox = Instance.new("TextBox")
     InputBox.Size = UDim2.new(1, -36, 0, 38)
-    InputBox.Position = UDim2.new(0, 18, 0, 160)
+    InputBox.Position = UDim2.new(0, 18, 0, 150)
     InputBox.BackgroundColor3 = Color3.fromRGB(5, 16, 24)
     InputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     InputBox.PlaceholderColor3 = Color3.fromRGB(100, 130, 150)
@@ -554,15 +557,14 @@ OpenKeySystemUI = function()
     local InputStroke = Instance.new("UIStroke", InputBox)
     InputStroke.Color = Color3.fromRGB(20, 50, 70)
 
-    -- HÀNG NÚT: LẤY KEY 24 TIẾNG & KÍCH HOẠT KEY
+    -- HÀNG NÚT CHÍNH: LẤY KEY 24 TIẾNG & KÍCH HOẠT KEY
     local ButtonsRow = Instance.new("Frame")
-    ButtonsRow.Size = UDim2.new(1, -36, 0, 42)
-    ButtonsRow.Position = UDim2.new(0, 18, 0, 206)
+    ButtonsRow.Size = UDim2.new(1, -36, 0, 40)
+    ButtonsRow.Position = UDim2.new(0, 18, 0, 194)
     ButtonsRow.BackgroundTransparency = 1
     ButtonsRow.ZIndex = 31
     ButtonsRow.Parent = MainFrame
 
-    -- Nút 1: Lấy Key 24 Tiếng (Electric Cyan Gradient)
     local GetKeyBtn = Instance.new("TextButton")
     GetKeyBtn.Size = UDim2.new(0.5, -6, 1, 0)
     GetKeyBtn.Position = UDim2.new(0, 0, 0, 0)
@@ -578,7 +580,6 @@ OpenKeySystemUI = function()
     local GetKeyStroke = Instance.new("UIStroke", GetKeyBtn)
     GetKeyStroke.Color = Color3.fromRGB(34, 211, 238)
 
-    -- Nút 2: Kích Hoạt Key (Cyber Dark Slate Viền Cyan)
     local CheckKeyBtn = Instance.new("TextButton")
     CheckKeyBtn.Size = UDim2.new(0.5, -6, 1, 0)
     CheckKeyBtn.Position = UDim2.new(0.5, 6, 0, 0)
@@ -595,10 +596,27 @@ OpenKeySystemUI = function()
     CheckStroke.Color = Color3.fromRGB(6, 182, 212)
     CheckStroke.Thickness = 1.4
 
+    -- NÚT HƯỚNG DẪN GETKEY MỚI (CYBER GLASS HOVER)
+    local TutorialBtn = Instance.new("TextButton")
+    TutorialBtn.Size = UDim2.new(1, -36, 0, 34)
+    TutorialBtn.Position = UDim2.new(0, 18, 0, 240)
+    TutorialBtn.BackgroundColor3 = Color3.fromRGB(6, 22, 34)
+    TutorialBtn.Text = Languages[CurrentLang].Tutorial
+    TutorialBtn.TextColor3 = Color3.fromRGB(125, 211, 252)
+    TutorialBtn.TextSize = 11
+    TutorialBtn.Font = Enum.Font.GothamBold
+    TutorialBtn.AutoButtonColor = false
+    TutorialBtn.ZIndex = 32
+    TutorialBtn.Parent = MainFrame
+    Instance.new("UICorner", TutorialBtn).CornerRadius = UDim.new(0, 10)
+    local TutorialStroke = Instance.new("UIStroke", TutorialBtn)
+    TutorialStroke.Color = Color3.fromRGB(14, 116, 144)
+    TutorialStroke.Thickness = 1.2
+
     -- BẢNG THÔNG BÁO 24 TIẾNG
     local NoticeCard = Instance.new("Frame")
     NoticeCard.Size = UDim2.new(1, -36, 0, 68)
-    NoticeCard.Position = UDim2.new(0, 18, 0, 258)
+    NoticeCard.Position = UDim2.new(0, 18, 0, 282)
     NoticeCard.BackgroundColor3 = Color3.fromRGB(5, 16, 24)
     NoticeCard.ZIndex = 31
     NoticeCard.Parent = MainFrame
@@ -622,7 +640,7 @@ OpenKeySystemUI = function()
 
     local StatusMsg = Instance.new("TextLabel")
     StatusMsg.Size = UDim2.new(1, -36, 0, 22)
-    StatusMsg.Position = UDim2.new(0, 18, 0, 336)
+    StatusMsg.Position = UDim2.new(0, 18, 0, 360)
     StatusMsg.BackgroundTransparency = 1
     StatusMsg.Text = "Zero In Engine · 24-Hour Cycle Online"
     StatusMsg.TextColor3 = Color3.fromRGB(100, 140, 170)
@@ -630,9 +648,9 @@ OpenKeySystemUI = function()
     StatusMsg.Font = Enum.Font.GothamMedium
     StatusMsg.ZIndex = 31
     StatusMsg.Parent = MainFrame
-  -- =========================================================================
+    -- =========================================================================
 --   🎯 KEY STEAM ZEROIN HUB - STEAL AN EGG 🥚 (PHẦN 4/4)
---   SỰ KIỆN NÚT BẤM · ĐIỀU HƯỚNG BILINGUAL · ĐẾM NGƯỢC 2 PHÚT
+--   SỰ KIỆN SAO CHÉP HƯỚNG DẪN · BILINGUAL MODAL · ĐẾM NGƯỢC 2 PHÚT
 -- =========================================================================
 
     local LangModal = Instance.new("Frame")
@@ -717,6 +735,7 @@ OpenKeySystemUI = function()
         InputBox.PlaceholderText = data.Placeholder
         GetKeyBtn.Text = data.GetKey
         CheckKeyBtn.Text = data.CheckKey
+        TutorialBtn.Text = data.Tutorial
         NoticeText.Text = data.Notice
         ModalTitle.Text = data.SelectLangTitle
 
@@ -780,6 +799,28 @@ OpenKeySystemUI = function()
                 GetKeyBtn.Text = Languages[CurrentLang].GetKey
                 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(6, 182, 212)
                 GetKeyStroke.Color = Color3.fromRGB(34, 211, 238)
+                StatusMsg.Text = "Zero In Engine · 24-Hour Cycle Online"
+                StatusMsg.TextColor3 = Color3.fromRGB(100, 140, 170)
+            end
+        end)
+    end)
+
+    -- SỰ KIỆN BẤM NÚT HƯỚNG DẪN GETKEY
+    TutorialBtn.MouseButton1Click:Connect(function()
+        PlayDeepBounce(TutorialBtn)
+        if setclipboard then setclipboard(TutorialUrl) elseif toclipboard then toclipboard(TutorialUrl) end
+
+        TutorialBtn.Text = "COPIED TUTORIAL LINK!"
+        TutorialBtn.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+        TutorialStroke.Color = Color3.fromRGB(52, 211, 153)
+        StatusMsg.Text = Languages[CurrentLang].CopiedTutorial
+        StatusMsg.TextColor3 = Color3.fromRGB(52, 211, 153)
+
+        task.delay(2.5, function()
+            if TutorialBtn and TutorialBtn.Parent then
+                TutorialBtn.Text = Languages[CurrentLang].Tutorial
+                TutorialBtn.BackgroundColor3 = Color3.fromRGB(6, 22, 34)
+                TutorialStroke.Color = Color3.fromRGB(14, 116, 144)
                 StatusMsg.Text = "Zero In Engine · 24-Hour Cycle Online"
                 StatusMsg.TextColor3 = Color3.fromRGB(100, 140, 170)
             end
@@ -877,7 +918,7 @@ else
             end
 
             saveInterval = saveInterval + 1
-            if saveInterval >= 10 then -- Tối ưu tần suất ghi file tránh nghẽn I/O
+            if saveInterval >= 10 then
                 saveInterval = 0
                 SaveTrialData(trialData.StartTime, os.time())
             end
