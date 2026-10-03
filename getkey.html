@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng Dẫn Getkey Script - syscall Hub</title>
+    <title>Hướng Dẫn Getkey Script - ronnei7.htk</title>
     
     <!-- Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,10 @@
 
     <style>
         :root {
-            --bg-main: #0b0c10;
-            --card-bg: #13151b;
+            --bg-main: #0a0b0e;
+            --card-bg: #12141c;
             --card-border: #222634;
             --accent-green: #00e676;
-            --accent-glow: rgba(0, 230, 118, 0.2);
             --text-primary: #ffffff;
             --text-secondary: #94a3b8;
             --plyr-color-main: #00e676;
@@ -40,23 +39,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 12px;
+            padding: 12px 8px;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 230, 118, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.6) 0%, transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(0, 230, 118, 0.1) 0%, transparent 70%),
+                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
         }
 
         .wrapper {
             width: 100%;
-            max-width: 520px;
+            max-width: 680px; /* Phóng to kích thước tổng thể khung */
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            padding: 20px 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             text-align: center;
         }
@@ -64,21 +63,20 @@
         .header-tag {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: rgba(0, 230, 118, 0.1);
-            border: 1px solid rgba(0, 230, 118, 0.25);
+            border: 1px solid rgba(0, 230, 118, 0.3);
             color: var(--accent-green);
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 14px;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         .title {
-            font-size: 24px;
+            font-size: 26px; /* Chữ to hơn */
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 6px;
@@ -88,9 +86,9 @@
         }
 
         .subtitle {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             font-weight: 500;
         }
 
@@ -100,17 +98,17 @@
             gap: 8px;
             background: #181c27;
             border: 1px solid #2a3042;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 30px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             color: #e2e8f0;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .pulse-dot {
-            width: 8px;
-            height: 8px;
+            width: 9px;
+            height: 9px;
             background-color: var(--accent-green);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-green);
@@ -124,16 +122,17 @@
         }
 
         .video-container {
-            border-radius: 14px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--card-border);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            margin-bottom: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 18px;
             background: #000000;
+            width: 100%;
         }
 
         .footer-note {
-            font-size: 12px;
+            font-size: 13px;
             color: #64748b;
             display: flex;
             align-items: center;
@@ -141,9 +140,9 @@
             gap: 6px;
         }
 
-        /* Plyr Customizations */
+        /* Plyr Video Player Custom Size */
         .plyr--full-ui {
-            border-radius: 14px;
+            border-radius: 16px;
         }
         .plyr__control--overlaid {
             background: var(--accent-green) !important;
@@ -156,19 +155,21 @@
     <div class="wrapper">
         <div class="card">
             
+            <!-- Đổi tên thành tiktok: ronnei7.htk -->
             <div class="header-tag">
-                <i class="fa-solid fa-code"></i> syscall Hub
+                <i class="fa-brands fa-tiktok"></i> tiktok: ronnei7.htk
             </div>
 
             <h1 class="title">Hướng Dẫn Getkey Script</h1>
             <p class="subtitle">Guide to getting the script key quickly & easily</p>
 
+            <!-- Số lượt truy cập tăng liên tục -->
             <div class="stats-badge">
                 <span class="pulse-dot"></span>
-                <span>Số lượt truy cập: <span id="visit-count" style="color: var(--accent-green);">10,005</span></span>
+                <span>Số lượt truy cập: <span id="visit-count" style="color: var(--accent-green);">10,006</span></span>
             </div>
 
-            <!-- Video Player (Tích hợp trực tiếp ID video YouTube) -->
+            <!-- Video Player Phóng To -->
             <div class="video-container">
                 <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="_8UGKIQwH0o"></div>
             </div>
@@ -184,7 +185,7 @@
     <!-- Plyr JavaScript -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script>
-        // Khởi tạo trình phát video
+        // Khởi tạo Player Video
         const player = new Plyr('#player', {
             controls: [
                 'play-large', 
@@ -206,11 +207,30 @@
             }
         });
 
-        // Tự động tăng lượt truy cập lưu vào bộ nhớ trình duyệt
-        let visits = localStorage.getItem('syscall_visits') || 10005;
-        visits = parseInt(visits) + 1;
-        localStorage.setItem('syscall_visits', visits);
-        document.getElementById('visit-count').innerText = visits.toLocaleString('vi-VN');
+        // Script tăng lượt truy cập tự động kiểu ảo như thật (Tăng 3 - 4 lượt mỗi 1 - 2.5 giây)
+        let visits = parseInt(localStorage.getItem('syscall_visits')) || 10006;
+        const countElement = document.getElementById('visit-count');
+
+        function updateVisitCount() {
+            countElement.innerText = visits.toLocaleString('vi-VN');
+        }
+
+        updateVisitCount();
+
+        function autoIncrementVisits() {
+            // Ngẫu nhiên cộng thêm 3 hoặc 4 người
+            const addPeople = Math.floor(Math.random() * 2) + 3; 
+            visits += addPeople;
+            localStorage.setItem('syscall_visits', visits);
+            updateVisitCount();
+
+            // Thời gian chờ ngẫu nhiên giữa các lần tăng (1s đến 2.5s)
+            const randomTime = Math.floor(Math.random() * 1500) + 1000;
+            setTimeout(autoIncrementVisits, randomTime);
+        }
+
+        // Kích hoạt tăng lượt xem liên tục
+        setTimeout(autoIncrementVisits, 1200);
     </script>
 </body>
 </html>
