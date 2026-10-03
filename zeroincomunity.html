@@ -741,7 +741,7 @@
 
         function copyScriptLoader() {
             playSound('copy');
-            const loaderCode = "loadstring(game:HttpGet('https://raw.githubusercontent.com/robvxs24/freemium/refs/heads/main/zero.lua'))()";
+            const loaderCode = "loadstring(game:HttpGet("https://raw.githubusercontent.com/craftvip/free/refs/heads/main/zeroincomunity.lua"))()";
             navigator.clipboard.writeText(loaderCode).catch(() => {
                 const el = document.createElement("textarea");
                 el.value = loaderCode;
